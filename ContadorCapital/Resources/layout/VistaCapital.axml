@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="Capital Contabil"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:gravity="center" />
+    <TextView
+        android:text="Capital Mexico"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="80dp"
+        android:gravity="center" />
+    <EditText
+        android:text="0"
+        android:numeric="integer"
+        android:inputType="number"
+        android:id="@+id/txtcapmexico"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center" />
+    <TextView
+        android:text="Capital Colombia"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="80dp"
+        android:gravity="center" />
+    <EditText
+        android:text="0"
+        android:id="@+id/txtcapcolombia"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center" />
+    <Button
+        android:text="Sair"
+        android:id="@+id/btnsair"
+        android:background="#AFAFAF"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="250dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center" />
+    <ImageView
+        android:id="@+id/imageMexico"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentLeft="true" />
+    <ImageView
+        android:id="@+id/imageColombia"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="350dp"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
