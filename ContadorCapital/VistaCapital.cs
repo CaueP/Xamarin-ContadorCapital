@@ -46,7 +46,7 @@ namespace ContadorCapital
 			}
 
 			btnSair.Click += delegate {
-				Android.OS.Process.KillProcess(Android.OS.);
+				Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 			};
 
 
