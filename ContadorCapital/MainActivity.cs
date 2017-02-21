@@ -2,6 +2,8 @@
 using Android.Widget;
 using Android.OS;
 using Android.Content;
+using System.IO;
+using SQLite;
 
 namespace ContadorCapital
 {
@@ -16,6 +18,18 @@ namespace ContadorCapital
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
+
+            // using SQLite
+            // setting path to save the DB
+            var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            // setting db file
+            path = Path.Combine(path, "Base.db3");
+            // connecting to DB
+            var conn = new SQLiteConnection(path);
+
+            // creating a table of the class Information
+            conn.CreateTable<Information>();
+            
 
 			// Get our button from the layout resource,
 			// and attach an event to it
@@ -36,6 +50,20 @@ namespace ContadorCapital
 					capitalC = ingressosC - egressosC;
 					capitalM = ingressosM - egressosM;
 
+                    // creating Information object that will be saved on DB
+                    var Insert = new Information();
+                    // setting the data
+                    Insert.IngresosMexico = ingressosM;
+                    Insert.IngresosColombia = ingressosC;
+                    Insert.EgresosMexico = egressosM;
+                    Insert.EgresosColombia = egressosC;
+
+                    // saving data on DB
+                    conn.Insert(Insert);
+                    Toast.MakeText
+                        (this, "Saved on SQLite", ToastLength.Long).Show();
+
+                    // Calling new activity
 					Carregar();
 				}
 				catch (System.Exception ex){
@@ -57,6 +85,18 @@ namespace ContadorCapital
 			//starting the VistaCapital activity
 			StartActivity(objIntent);
 		}
+
+        // Information class to be saved on the SQLite Database
+        public class Information
+        {
+            public double IngresosMexico { get; set; }
+
+            public double EgresosMexico { get; set; }
+
+            public double IngresosColombia { get; set; }
+
+            public double EgresosColombia { get; set; }
+        }
 	}
 }
 

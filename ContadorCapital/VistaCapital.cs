@@ -10,6 +10,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SQLite;
+using System.IO;
+using static ContadorCapital.MainActivity;
 
 namespace ContadorCapital
 {
@@ -40,7 +43,28 @@ namespace ContadorCapital
 				imageMex.SetImageResource(Resource.Drawable.mexico);
 				imageCol.SetImageResource(Resource.Drawable.colombia);
 
-			}
+                // using SQLite
+                // setting path to save the DB
+                var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                // setting db file
+                path = Path.Combine(path, "Base.db3");
+                // connecting to DB
+                var conn = new SQLiteConnection(path);
+
+                var elements = from s in conn.Table<Information>()
+                               select s;
+                foreach(var queue in elements)
+                {
+                    Toast.MakeText(
+                        this, queue.IngresosMexico.ToString(), ToastLength.Short).Show();
+                    Toast.MakeText(
+                        this, queue.IngresosColombia.ToString(), ToastLength.Short).Show();
+                    Toast.MakeText(
+                        this, queue.EgresosMexico.ToString(), ToastLength.Short).Show();
+                    Toast.MakeText(
+                        this, queue.EgresosColombia.ToString(), ToastLength.Short).Show();
+                }
+            }
 			catch (System.Exception ex) {
 				Toast.MakeText(this, ex.Message, ToastLength.Short).Show();
 			}
